@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Force Directed Graph Page</title>
-    <link rel="stylesheet" href="static/styles.css">
+    <link rel="stylesheet" href="static/style.css">
     <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
@@ -16,7 +16,6 @@
             <p>This is a simple text area to provide some description about the graph.</p>
         </section>
         <section id="content">
-            <div id="graph"></div>
             <aside id="links">
                 <ul>
                     <li><a href="#">Link 1</a></li>
@@ -25,6 +24,7 @@
                     <!-- Add more links as needed -->
                 </ul>
             </aside>
+            <div id="graph"></div>
         </section>
     </main>
     <script src="static/script.js"></script>
