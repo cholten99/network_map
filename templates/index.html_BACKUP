@@ -3,20 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Force Directed Graph Page</title>
-    <link rel="stylesheet" href="static/style.css">
+    <title>Network map of GOV.UK</title>
+    <link rel="stylesheet" href="static/styles.css">
     <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
     <header>
-        <h1>Force Directed Graph Page</h1>
+        <h1>Network map of GOV.UK</h1>
     </header>
     <main>
         <section id="description">
-            <p>This is a simple text area to provide some description about the graph.</p>
+            <p>A network map of <a href="https://gov.uk" target="_blank">GOV.UK</a> to show how the pages of the UK government's official website are interconnected.</p>
+            <p>This site was entirely designed and written by <a href="https://www.openai.com/chatgpt" target="_blank">ChatGPT</a> with prompt engineering from <a href="https://bowsy.co.uk" target="_blank">David Durant</a>. The code is on <a href="https://github.com/cholten99/network_map" target="_blank">GitHub</a>.</p>
         </section>
         <section id="content">
+            <div id="graph"></div>
             <aside id="links">
+                <h2>Links from selected page</h2> <!-- Header for the links -->
                 <ul>
                     <li><a href="#">Link 1</a></li>
                     <li><a href="#">Link 2</a></li>
@@ -24,7 +27,6 @@
                     <!-- Add more links as needed -->
                 </ul>
             </aside>
-            <div id="graph"></div>
         </section>
     </main>
     <script src="static/script.js"></script>
