@@ -1,0 +1,4 @@
+empty_tables=True
+num_internal_pages=100
+avg_links_per_internal_page=5
+percent_internal_to_external=20
