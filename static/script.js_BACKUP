@@ -1,0 +1,98 @@
+// script.js
+document.addEventListener('DOMContentLoaded', function() {
+    // Set the dimensions of the SVG
+    const graphDiv = document.getElementById('graph');
+    const width = graphDiv.clientWidth;
+    const height = graphDiv.clientHeight;
+
+    // Append the SVG to the graph div and set its width and height
+    const svg = d3.select('#graph').append('svg')
+        .attr('width', width)
+        .attr('height', height);
+
+    // Nodes data
+    const nodes = [
+        { id: 1, type: 'circle' },
+        { id: 2, type: 'rectangle' },
+        { id: 3, type: 'triangle' }
+    ];
+
+    // Links data
+    const links = [
+        { source: 1, target: 2 },
+        { source: 2, target: 3 }
+    ];
+
+    // Force simulation setup
+    const simulation = d3.forceSimulation(nodes)
+        .force('link', d3.forceLink(links).id(d => d.id))
+        .force('charge', d3.forceManyBody().strength(-400))
+        .force('center', d3.forceCenter(width / 2, height / 2));
+
+    // Drawing the links
+    const link = svg.selectAll(".link")
+        .data(links)
+        .enter().append("line")
+        .style("stroke", "#aaa")
+        .attr("stroke-width", 2);
+
+    // Drawing the nodes
+    const node = svg.selectAll(".node")
+        .data(nodes)
+        .enter().append("g");
+
+    // Drawing different shapes based on node type
+    node.append("path")
+        .attr("d", d => {
+            if (d.type === 'rectangle') {
+                return 'M -15 -10 15 -10 15 10 -15 10 Z'; // Rectangle path
+            } else if (d.type === 'triangle') {
+                return 'M -10 10 10 10 0 -10 Z'; // Triangle path
+            }
+            return ''; // Default path
+        })
+        .attr("fill", d => {
+            if (d.type === 'rectangle') return 'red';
+            if (d.type === 'triangle') return 'green';
+            return 'none'; // No fill for unused type
+        });
+
+    // Filtering to add circles only for circle type nodes
+    node.append("circle")
+        .filter(d => d.type === 'circle')
+        .attr("r", 10)
+        .attr("fill", "blue");
+
+    // Simulation's tick function to update link and node positions
+    simulation.on("tick", () => {
+        link.attr("x1", d => d.source.x)
+            .attr("y1", d => d.source.y)
+            .attr("x2", d => d.target.x)
+            .attr("y2", d => d.target.y);
+
+        node.attr("transform", d => `translate(${d.x},${d.y})`);
+    });
+
+    // Drag functionality
+    node.call(d3.drag()
+        .on("start", dragstarted)
+        .on("drag", dragged)
+        .on("end", dragended));
+
+    function dragstarted(event) {
+        if (!event.active) simulation.alphaTarget(0.3).restart();
+        event.subject.fx = event.subject.x;
+        event.subject.fy = event.subject.y;
+    }
+
+    function dragged(event) {
+        event.subject.fx = event.x;
+        event.subject.fy = event.y;
+    }
+
+    function dragended(event) {
+        if (!event.active) simulation.alphaTarget(0);
+        event.subject.fx = null;
+        event.subject.fy = null;
+    }
+});

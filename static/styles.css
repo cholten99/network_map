@@ -1,0 +1,89 @@
+/* static/styles.css */
+body {
+    font-family: 'Arial', sans-serif; /* Default font for the body */
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px; /* Reduced vertical padding */
+    text-align: center;
+}
+
+header h1 {
+    font-family: 'Georgia', serif; /* Elegant and widely used font */
+    font-size: 72px; /* Large size for impact */
+}
+
+#description {
+    text-align: center; /* Center aligning the text */
+    padding: 0 20px; /* Padding for better readability */
+    font-family: 'Georgia', serif; /* Consistent font for all textual content */
+    font-size: 24px; /* 1/3rd smaller than the previous size */
+}
+
+#content {
+    display: flex;
+    margin: 20px; /* Maintain outer margin */
+    gap: 40px; /* Increase gap to match the new border size */
+    align-items: start; /* Align items at the start of the container */
+}
+
+#graph {
+    flex-grow: 1;
+    background-color: #fff;
+    border-left: 40px solid #f5f5f5; /* Matching gap size */
+    border-right: 1px solid #ddd; /* Standard right border */
+    height: 600px; /* Fixed height for the graph container */
+}
+
+#links {
+    width: 400px; /* Twice the previous width */
+    background-color: #fff;
+    border-right: 40px solid #f5f5f5; /* Matching gap size */
+    padding: 20px;
+    overflow-y: auto;
+    font-family: 'Georgia', serif;
+}
+
+#links h2 {
+    font-size: 20px; /* Font size for header in links section */
+    margin-bottom: 15px; /* Spacing below header */
+}
+
+#links ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#links li {
+    margin-bottom: 10px;
+}
+
+#links a {
+    text-decoration: none;
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+#links a:hover {
+    text-decoration: underline;
+}
+
+.tooltip {
+    position: absolute;
+    text-align: center;
+    padding: 8px;
+    font-size: 14px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    pointer-events: none;
+    opacity: 0.9;
+    visibility: hidden;
+    z-index: 1;
+}
